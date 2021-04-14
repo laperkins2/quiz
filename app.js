@@ -1,4 +1,3 @@
-(function () {
   function setQuiz() {
     const output = [];
 
@@ -7,35 +6,39 @@
 
       for (letter in currentQuestion.answers) {
         answers.push(
-          `<label><input type="radio" name="questions${questionNumber}" value="${letter}"> 
-        ${letter} : ${currentQuestion.answers[letter]}</label>`
+          `<label>
+                <input type="radio" name="question${questionNumber}" value="${letter}"> 
+                ${letter} : 
+                ${currentQuestion.answers[letter]}
+              </label>`
         );
       }
-      output.push(`<div class="question"> ${currentQuestion.question} </div>
-    <div class="answers"> ${answers.join('')} </div>`);
+      output.push(
+        `<div class="question"> ${currentQuestion.question} </div>
+            <div class="answers"> ${answers.join('')} </div>`
+      );
     });
     quizHolder.innerHTML = output.join('');
   }
 
   function visibleResults() {
-    const answerHolder = quizHolder.querySelectorAll('.answers');
+    const answerHolders = quizHolder.querySelectorAll('.answers');
 
     let totalCorrect = 0;
 
     myQuestions.forEach((currentQuestion, questionNumber) => {
-      const answerHolder = answerHolder[questionNumber];
-
+      const answerHolder = answerHolders[questionNumber];
       const selector = `input[name=question${questionNumber}]:checked`;
       const userAnswer = (answerHolder.querySelector(selector) || {}).value;
       if (userAnswer === currentQuestion.correctAnswer) {
         totalCorrect++;
 
-        answerHolder[questionNumber].style.color = 'red';
+        answerHolders[questionNumber].style.color = 'blue';
       } else {
-        answerHolder[questionNumber].style.color = 'green';
+        answerHolders[questionNumber].style.textDecoration = 'line-through';
       }
     });
-    resultsHolder.innerHTML = `${totalCorrect} out or ${myQuestions.length}`;
+    resultsHolder.innerHTML = `${totalCorrect} out of ${myQuestions.length}`;
   }
   const quizHolder = document.getElementById('quiz');
   const resultsHolder = document.getElementById('results');
@@ -88,4 +91,3 @@
   setQuiz();
 
   submitButton.addEventListener('click', visibleResults);
-})();
