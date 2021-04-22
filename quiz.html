@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=M, initial-scale=1.0" />
+    <link rel="stylesheet" href="quiz.css" />
+    <title>Quiz for thought</title>
+  </head>
+  <body>
+    <div class="quiz-holder">
+      <div id="quiz"></div>
+    </div>
+    <button id="previous">Previous</button>
+    <button id="next">Next</button>
+    <button id="submit">Result</button>
+    <div id="results"></div>
+    <script src="quiz.js"></script>
+  </body>
+  <footer>
+    <button onclick="homePage()">Home Page</button>
+    <script>
+      function homePage() {
+        location.replace('index.html');
+      }
+    </script>
+  </footer>
+</html>
